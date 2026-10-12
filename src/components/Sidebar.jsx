@@ -21,13 +21,16 @@ import {
   Server,
   FileText,
   Lock,
-  ArrowLeft,
-  ArrowRight
+  ArrowRight,
+  Award,
+  FolderArchive,
+  Receipt
 } from 'lucide-react';
 
 export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobileOpen }) {
   const location = useLocation();
   const isSuperAdmin = location.pathname.startsWith('/super-admin');
+  const isClientPortal = location.pathname.startsWith('/client-portal');
 
   // Company Operations Sidebar Menu
   const companyNav = [
@@ -57,7 +60,7 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
     {
       group: "Platform & Portals",
       items: [
-        { path: "/client-portal", label: "Client Portal", icon: Users, badge: "External" },
+        { path: "/client-portal", label: "Client Portal", icon: Users, badge: "External", badgeColor: "bg-emerald-100 text-emerald-800" },
         { path: "/super-admin", label: "Super Admin", icon: ShieldAlert, badge: "Admin", badgeColor: "bg-amber-100 text-amber-800" },
         { path: "/ai-assistant", label: "AI Copilot", icon: Bot, badge: "v2.4", badgeColor: "bg-blue-100 text-blue-800" },
       ]
@@ -88,7 +91,31 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
     }
   ];
 
-  const currentNav = isSuperAdmin ? superAdminNav : companyNav;
+  // External Client & Property Owner Portal Menu
+  const clientNav = [
+    {
+      group: "Owner Overview",
+      items: [
+        { path: "/client-portal", label: "Executive Dashboard", icon: LayoutDashboard },
+        { path: "/client-portal/milestones", label: "Project Milestones", icon: Award, badge: "62%" },
+      ]
+    },
+    {
+      group: "Documents & Sign-offs",
+      items: [
+        { path: "/client-portal/documents", label: "Shared BIM & Drawings", icon: FolderArchive, badge: "84 files" },
+        { path: "/client-portal/approvals", label: "Pending Approvals", icon: FileCheck2, badge: "2 Action", badgeColor: "bg-amber-100 text-amber-800" },
+      ]
+    },
+    {
+      group: "Commercial",
+      items: [
+        { path: "/client-portal/finances", label: "Billing & Invoices", icon: Receipt },
+      ]
+    }
+  ];
+
+  const currentNav = isSuperAdmin ? superAdminNav : isClientPortal ? clientNav : companyNav;
 
   return (
     <>
@@ -112,9 +139,19 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
         <div className="h-[68px] px-4 flex items-center justify-between border-b border-slate-100 shrink-0">
           <div className="flex items-center gap-3 overflow-hidden">
             <div className={`w-10 h-10 rounded-2xl flex items-center justify-center text-white shadow-md shrink-0 ${
-              isSuperAdmin ? 'bg-slate-900 shadow-slate-900/30' : 'bg-gradient-to-tr from-blue-700 to-blue-500 shadow-blue-500/20'
+              isSuperAdmin
+                ? 'bg-slate-900 shadow-slate-900/30'
+                : isClientPortal
+                ? 'bg-emerald-600 shadow-emerald-600/30'
+                : 'bg-gradient-to-tr from-blue-700 to-blue-500 shadow-blue-500/20'
             }`}>
-              {isSuperAdmin ? <ShieldAlert className="w-5 h-5 text-amber-400" /> : <Layers className="w-5 h-5" />}
+              {isSuperAdmin ? (
+                <ShieldAlert className="w-5 h-5 text-amber-400" />
+              ) : isClientPortal ? (
+                <Users className="w-5 h-5 text-white" />
+              ) : (
+                <Layers className="w-5 h-5" />
+              )}
             </div>
             {!collapsed && (
               <div className="flex flex-col">
@@ -123,13 +160,15 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
                   <span className={`text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded border ${
                     isSuperAdmin
                       ? 'bg-amber-50 text-amber-800 border-amber-200'
+                      : isClientPortal
+                      ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
                       : 'bg-blue-50 text-blue-700 border border-blue-200'
                   }`}>
-                    {isSuperAdmin ? 'Admin' : 'SaaS'}
+                    {isSuperAdmin ? 'Admin' : isClientPortal ? 'Client' : 'SaaS'}
                   </span>
                 </span>
                 <span className="text-[11px] text-slate-400 font-medium leading-none">
-                  {isSuperAdmin ? 'Platform Management' : 'Construction OS'}
+                  {isSuperAdmin ? 'Platform Management' : isClientPortal ? 'Owner Portal' : 'Construction OS'}
                 </span>
               </div>
             )}
@@ -153,21 +192,6 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
           </button>
         </div>
 
-        {/* Super Admin Switcher Notice */}
-        {isSuperAdmin && !collapsed && (
-          <div className="p-3 mx-3 mt-3 bg-amber-50 border border-amber-200/80 rounded-2xl flex items-center justify-between text-xs">
-            <div className="flex items-center gap-2">
-              <Lock className="w-4 h-4 text-amber-600" />
-              <span className="font-bold text-amber-900">Admin Mode</span>
-            </div>
-            <Link
-              to="/"
-              className="text-[11px] font-extrabold text-blue-700 hover:text-blue-800 flex items-center gap-0.5"
-            >
-              Exit <ArrowRight className="w-3 h-3" />
-            </Link>
-          </div>
-        )}
 
         {/* Nav List */}
         <div className="flex-1 overflow-y-auto px-3 py-4 space-y-6">
@@ -181,9 +205,9 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
               <div className="space-y-1">
                 {section.items.map((item) => {
                   const Icon = item.icon;
-                  // Exact match for dashboard roots, prefix match for others
+                  // Exact match for portal roots, prefix match for others
                   const isActive =
-                    item.path === '/' || item.path === '/super-admin'
+                    item.path === '/' || item.path === '/super-admin' || item.path === '/client-portal'
                       ? location.pathname === item.path
                       : location.pathname.startsWith(item.path);
 
@@ -196,6 +220,8 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
                         isActive
                           ? isSuperAdmin
                             ? 'bg-slate-900 text-white shadow-sm'
+                            : isClientPortal
+                            ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-600/30'
                             : 'bg-blue-600 text-white shadow-sm shadow-blue-500/25'
                           : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
                       }`}
@@ -205,6 +231,8 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
                           ? 'text-white'
                           : isSuperAdmin
                           ? 'text-slate-500 group-hover:text-amber-600'
+                          : isClientPortal
+                          ? 'text-slate-500 group-hover:text-emerald-600'
                           : 'text-slate-500 group-hover:text-blue-600'
                       }`} />
                       
@@ -249,14 +277,29 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
                 <div className="text-xs font-bold text-slate-200">
                   48 Tenants Isolated
                 </div>
-                <div className="text-[10px] text-slate-400 mt-1">
-                  Database & API healthy • 42ms
-                </div>
                 <Link
                   to="/"
                   className="mt-2.5 w-full py-1.5 bg-white/10 hover:bg-white/20 rounded-xl text-center text-[11px] font-bold text-white block transition"
                 >
                   ← Go to Company Operations
+                </Link>
+              </div>
+            ) : isClientPortal ? (
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-[11px] font-extrabold text-emerald-400 flex items-center gap-1">
+                    <Award className="w-3.5 h-3.5" /> Certified Portal
+                  </span>
+                  <span className="text-[10px] text-white/80">Skyline Realty</span>
+                </div>
+                <div className="text-xs font-bold text-slate-200">
+                  Physical Work: 62.4%
+                </div>
+                <Link
+                  to="/"
+                  className="mt-2.5 w-full py-1.5 bg-white/10 hover:bg-white/20 rounded-xl text-center text-[11px] font-bold text-white block transition"
+                >
+                  ← Switch to Contractor PM
                 </Link>
               </div>
             ) : (

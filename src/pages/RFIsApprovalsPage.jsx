@@ -153,7 +153,7 @@ export default function RFIsApprovalsPage() {
               </div>
 
               {/* Scope & Consultant Information */}
-              <div className="grid grid-cols-2 gap-4 p-3.5 rounded-2xl bg-slate-50 border border-slate-150 mb-4 text-xs">
+              <div className="grid grid-cols-2 gap-4 p-3.5 rounded-2xl bg-slate-50 border border-gray-200 mb-4 text-xs">
                 <div>
                   <span className="text-[10px] font-bold text-slate-400 uppercase">Initiated By</span>
                   <p className="font-bold text-slate-800 mt-0.5">{selectedRfi.raisedBy}</p>
@@ -174,7 +174,7 @@ export default function RFIsApprovalsPage() {
               <div className="space-y-3 mb-4">
                 <h4 className="text-xs font-bold text-slate-700">Official Discussion Log (2 Responses)</h4>
                 
-                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-150 text-xs space-y-1">
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-gray-200 text-xs space-y-1">
                   <div className="flex justify-between items-center text-[11px]">
                     <span className="font-bold text-slate-900">Studio ArchMatrix (Structural Consultant)</span>
                     <span className="text-slate-400">May 19, 11:30 AM</span>

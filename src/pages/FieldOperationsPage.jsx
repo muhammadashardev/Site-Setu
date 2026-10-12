@@ -145,7 +145,7 @@ export default function FieldOperationsPage() {
               </div>
 
               {/* Log Summary */}
-              <p className="text-xs text-slate-700 leading-relaxed bg-slate-50 p-3.5 rounded-2xl border border-slate-150">
+              <p className="text-xs text-slate-700 leading-relaxed bg-slate-50 p-3.5 rounded-2xl border border-gray-200">
                 {log.summary}
               </p>
 

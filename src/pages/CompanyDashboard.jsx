@@ -247,7 +247,7 @@ export default function CompanyDashboard() {
             </div>
 
             {/* Project Image & Name */}
-            <div className="flex items-center gap-4 mb-5 p-3 bg-slate-50 rounded-2xl border border-slate-150">
+            <div className="flex items-center gap-4 mb-5 p-3 bg-slate-50 rounded-2xl border border-gray-200">
               <img
                 src={activeProject.image}
                 alt={activeProject.name}
@@ -327,7 +327,7 @@ export default function CompanyDashboard() {
                   <button
                     key={action.id}
                     onClick={action.action}
-                    className="flex flex-col items-center text-center p-4 rounded-2xl border border-slate-150 hover:border-blue-300 bg-slate-50/60 hover:bg-blue-50/40 transition group shadow-xs"
+                    className="flex flex-col items-center text-center p-4 rounded-2xl border border-gray-200 hover:border-blue-300 bg-slate-50/60 hover:bg-blue-50/40 transition group shadow-xs"
                   >
                     <div className={`w-11 h-11 rounded-2xl flex items-center justify-center mb-2.5 transition-transform group-hover:scale-110 ${action.color}`}>
                       <Icon className="w-5 h-5" />
@@ -345,7 +345,7 @@ export default function CompanyDashboard() {
           </div>
 
           {/* Manpower & Live Status Footer */}
-          <div className="mt-5 p-3.5 rounded-2xl bg-slate-50 border border-slate-150 flex items-center justify-between text-xs">
+          <div className="mt-5 p-3.5 rounded-2xl bg-slate-50 border border-gray-200 flex items-center justify-between text-xs">
             <div className="flex items-center gap-2">
               <HardHat className="w-4 h-4 text-amber-600" />
               <span className="font-bold text-slate-800">142 Workers Active</span>
@@ -367,7 +367,7 @@ export default function CompanyDashboard() {
               {upcomingDeadlines.map((dl) => (
                 <div
                   key={dl.id}
-                  className="p-3 rounded-2xl bg-slate-50 border border-slate-150 flex items-center justify-between text-xs"
+                  className="p-3 rounded-2xl bg-slate-50 border border-gray-200 flex items-center justify-between text-xs"
                 >
                   <div className="flex items-center gap-2.5 truncate">
                     <span className="w-2 h-2 rounded-full bg-blue-600 shrink-0"></span>
@@ -459,7 +459,7 @@ export default function CompanyDashboard() {
           {dailySiteLogs[0].photos.slice(0, 2).map((photo, i) => (
             <div
               key={i}
-              className="flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-150 hover:bg-blue-50/20 transition group shadow-xs"
+              className="flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-slate-50 border border-gray-200 hover:bg-blue-50/20 transition group shadow-xs"
             >
               <img
                 src={photo.url}
