@@ -1,0 +1,1 @@
+acha tar mera deisng pane knr ahai react js and tailwind css mein krna hai design ok and deisng components mein rkhna hai ok and routes use krn ehai state se manage nhi krna ok and her section responsvie ho aniamton gnai ahi to apg se aniamion bnakr do us se improt rke and mock data alg rkhna hai us s use krna hai 
