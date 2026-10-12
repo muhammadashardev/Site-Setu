@@ -10,6 +10,10 @@ import RFIsApprovalsPage from './pages/RFIsApprovalsPage';
 import FinanceCostPage from './pages/FinanceCostPage';
 import SafetyCompliancePage from './pages/SafetyCompliancePage';
 import SuperAdminPage from './pages/SuperAdminPage';
+import SuperAdminTenants from './pages/superadmin/SuperAdminTenants';
+import SuperAdminSubscriptions from './pages/superadmin/SuperAdminSubscriptions';
+import SuperAdminSystemHealth from './pages/superadmin/SuperAdminSystemHealth';
+import SuperAdminAuditLogs from './pages/superadmin/SuperAdminAuditLogs';
 import ClientPortalPage from './pages/ClientPortalPage';
 import AIAssistantPage from './pages/AIAssistantPage';
 import LoginPage from './pages/LoginPage';
@@ -21,6 +25,7 @@ export default function App() {
         {/* Dedicated Login & Role Selector Page */}
         <Route path="/login" element={<LoginPage />} />
 
+        {/* Unified Application Layout */}
         <Route path="/" element={<AppLayout />}>
           {/* Company Operations Dashboard */}
           <Route index element={<CompanyDashboard />} />
@@ -46,8 +51,12 @@ export default function App() {
           {/* Safety & Compliance */}
           <Route path="safety" element={<SafetyCompliancePage />} />
           
-          {/* Super Admin Multi-tenant Platform */}
+          {/* Super Admin Multi-tenant Platform Suite */}
           <Route path="super-admin" element={<SuperAdminPage />} />
+          <Route path="super-admin/tenants" element={<SuperAdminTenants />} />
+          <Route path="super-admin/subscriptions" element={<SuperAdminSubscriptions />} />
+          <Route path="super-admin/system-health" element={<SuperAdminSystemHealth />} />
+          <Route path="super-admin/audit-logs" element={<SuperAdminAuditLogs />} />
           
           {/* External Client & Owner Portal */}
           <Route path="client-portal" element={<ClientPortalPage />} />
