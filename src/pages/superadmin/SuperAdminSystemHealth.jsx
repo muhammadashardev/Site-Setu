@@ -76,7 +76,7 @@ export default function SuperAdminSystemHealth() {
           {nodes.map((node, idx) => (
             <div
               key={idx}
-              className="p-4 rounded-2xl bg-slate-50 border border-slate-150 flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs"
+              className="p-4 rounded-2xl bg-slate-50 border border-gray-200 flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs"
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">

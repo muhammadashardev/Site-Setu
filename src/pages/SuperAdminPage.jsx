@@ -499,7 +499,7 @@ export default function SuperAdminPage() {
               {liveEvents.map((evt) => (
                 <div
                   key={evt.id}
-                  className="p-3.5 rounded-2xl bg-slate-50 border border-slate-150 text-xs space-y-1 hover:bg-blue-50/20 transition"
+                  className="p-3.5 rounded-2xl bg-slate-50 border border-gray-200 text-xs space-y-1 hover:bg-blue-50/20 transition"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-bold text-slate-400">{evt.time}</span>
@@ -697,7 +697,7 @@ export default function SuperAdminPage() {
             {featureFlags.map((flag) => (
               <div
                 key={flag.id}
-                className="p-4 rounded-2xl bg-slate-50 border border-slate-150 space-y-3 hover:border-blue-200 transition"
+                className="p-4 rounded-2xl bg-slate-50 border border-gray-200 space-y-3 hover:border-blue-200 transition"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
@@ -763,7 +763,7 @@ export default function SuperAdminPage() {
             {superAdminMetrics.systemNodes.map((node, idx) => (
               <div
                 key={idx}
-                className="p-3.5 rounded-2xl bg-slate-50 border border-slate-150 flex items-center justify-between text-xs"
+                className="p-3.5 rounded-2xl bg-slate-50 border border-gray-200 flex items-center justify-between text-xs"
               >
                 <div>
                   <div className="font-extrabold text-slate-800">{node.node}</div>

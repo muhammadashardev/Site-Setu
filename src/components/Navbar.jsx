@@ -74,7 +74,7 @@ export default function Navbar({
 
           {/* Project Dropdown Menu */}
           {projectDropdownOpen && (
-            <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-150 p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+            <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-gray-200 p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
               <div className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 flex justify-between items-center">
                 <span>Select Project</span>
                 <span className="text-[10px] bg-slate-100 px-1.5 py-0.5 rounded text-slate-600 font-bold">{allProjects.length} Active</span>
@@ -125,55 +125,33 @@ export default function Navbar({
         </div>
       </div>
 
-      {/* Middle: 3 Quick Portals Switcher */}
-      <div className="hidden lg:flex items-center bg-slate-100/90 p-1 rounded-2xl border border-slate-200/70 text-xs font-bold shadow-inner">
+
+
+      {/* Middle: Expanded Center Search Bar */}
+      <div className="flex-1 max-w-md lg:max-w-xl mx-3 sm:mx-6 hidden sm:block">
         <button
-          onClick={() => navigate('/')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition ${
-            isCompany
-              ? 'bg-white text-blue-700 shadow-xs font-extrabold'
-              : 'text-slate-600 hover:text-slate-900'
-          }`}
+          onClick={onOpenSearch}
+          className="w-full flex items-center justify-between px-4 py-2 bg-slate-50 hover:bg-slate-100/90 border border-gray-200 hover:border-gray-300 rounded-2xl text-xs text-slate-500 transition shadow-2xs group"
         >
-          <LayoutDashboard className="w-3.5 h-3.5 text-blue-600" />
-          Company Ops
-        </button>
-        <button
-          onClick={() => navigate('/super-admin')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition ${
-            isSuperAdmin
-              ? 'bg-slate-900 text-white shadow-xs font-extrabold'
-              : 'text-slate-600 hover:text-slate-900'
-          }`}
-        >
-          <ShieldAlert className="w-3.5 h-3.5 text-amber-500" />
-          Super Admin
-        </button>
-        <button
-          onClick={() => navigate('/client-portal')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition ${
-            isClientPortal
-              ? 'bg-emerald-600 text-white shadow-xs font-extrabold'
-              : 'text-slate-600 hover:text-slate-900'
-          }`}
-        >
-          <Users className="w-3.5 h-3.5 text-white" />
-          Client Portal
+          <div className="flex items-center gap-2.5 truncate">
+            <Search className="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition shrink-0" />
+            <span className="text-slate-400 font-medium truncate">Search projects, tasks, drawings, BOQ, submittals...</span>
+          </div>
+          <kbd className="hidden md:inline-block px-2 py-0.5 text-[10px] font-bold bg-white border border-gray-200 rounded-lg text-slate-400 shadow-2xs shrink-0">
+            ⌘K
+          </kbd>
         </button>
       </div>
 
-      {/* Right: Search, AI button, Notifications, Profile, Role Switcher */}
-      <div className="flex items-center gap-2 sm:gap-2.5">
-        {/* Search */}
+      {/* Right: AI button, Notifications, Profile, Role Switcher */}
+      <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+        {/* Mobile Search Icon */}
         <button
           onClick={onOpenSearch}
-          className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200/90 rounded-2xl text-xs text-slate-500 transition shadow-xs group"
+          className="p-2 sm:hidden text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-2xl transition"
+          title="Search"
         >
-          <Search className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-600" />
-          <span className="hidden sm:inline">Search...</span>
-          <kbd className="hidden md:inline-block px-1.5 py-0.5 text-[10px] font-semibold bg-white border border-slate-200 rounded text-slate-400">
-            ⌘K
-          </kbd>
+          <Search className="w-4 h-4" />
         </button>
 
         {/* AI Assistant */}
@@ -235,7 +213,7 @@ export default function Navbar({
 
           {/* User Menu */}
           {userMenuOpen && (
-            <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-150 p-2 z-50">
+            <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-200 p-2 z-50">
               <div className="p-3 border-b border-slate-100">
                 <p className="text-xs font-extrabold text-slate-900">{currentUser.name}</p>
                 <p className="text-[11px] text-slate-500">{currentUser.email}</p>

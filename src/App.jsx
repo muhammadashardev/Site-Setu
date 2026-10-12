@@ -15,13 +15,22 @@ import SuperAdminSubscriptions from './pages/superadmin/SuperAdminSubscriptions'
 import SuperAdminSystemHealth from './pages/superadmin/SuperAdminSystemHealth';
 import SuperAdminAuditLogs from './pages/superadmin/SuperAdminAuditLogs';
 import ClientPortalPage from './pages/ClientPortalPage';
+import ClientPortalMilestones from './pages/client/ClientPortalMilestones';
+import ClientPortalDocuments from './pages/client/ClientPortalDocuments';
+import ClientPortalApprovals from './pages/client/ClientPortalApprovals';
+import ClientPortalFinances from './pages/client/ClientPortalFinances';
 import AIAssistantPage from './pages/AIAssistantPage';
 import LoginPage from './pages/LoginPage';
+import SplashLoaderPage from './pages/SplashLoaderPage';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Interactive 3D Construction Splash Loader */}
+        <Route path="/splash" element={<SplashLoaderPage />} />
+        <Route path="/welcome" element={<SplashLoaderPage />} />
+
         {/* Dedicated Login & Role Selector Page */}
         <Route path="/login" element={<LoginPage />} />
 
@@ -58,8 +67,12 @@ export default function App() {
           <Route path="super-admin/system-health" element={<SuperAdminSystemHealth />} />
           <Route path="super-admin/audit-logs" element={<SuperAdminAuditLogs />} />
           
-          {/* External Client & Owner Portal */}
+          {/* External Client & Property Owner Portal Suite */}
           <Route path="client-portal" element={<ClientPortalPage />} />
+          <Route path="client-portal/milestones" element={<ClientPortalMilestones />} />
+          <Route path="client-portal/documents" element={<ClientPortalDocuments />} />
+          <Route path="client-portal/approvals" element={<ClientPortalApprovals />} />
+          <Route path="client-portal/finances" element={<ClientPortalFinances />} />
           
           {/* AI Construction Copilot */}
           <Route path="ai-assistant" element={<AIAssistantPage />} />

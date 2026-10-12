@@ -83,7 +83,7 @@ export default function FinanceCostPage() {
 
         <div className="space-y-4">
           {data.categories.map((cat, idx) => (
-            <div key={idx} className="p-4 rounded-2xl bg-slate-50 border border-slate-150 space-y-2">
+            <div key={idx} className="p-4 rounded-2xl bg-slate-50 border border-gray-200 space-y-2">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs gap-1">
                 <span className="font-bold text-slate-900">{cat.name}</span>
                 <div className="flex items-center gap-4 text-slate-600">

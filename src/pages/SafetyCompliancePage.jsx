@@ -84,7 +84,7 @@ export default function SafetyCompliancePage() {
 
           <div className="space-y-3">
             {observations.map((obs) => (
-              <div key={obs.id} className="p-4 rounded-2xl bg-slate-50 border border-slate-150 space-y-2 text-xs">
+              <div key={obs.id} className="p-4 rounded-2xl bg-slate-50 border border-gray-200 space-y-2 text-xs">
                 <div className="flex items-center justify-between">
                   <span className="font-extrabold text-slate-900">{obs.id} • {obs.type}</span>
                   <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
@@ -114,7 +114,7 @@ export default function SafetyCompliancePage() {
 
           <div className="space-y-3">
             {certificates.map((cert, idx) => (
-              <div key={idx} className="p-4 rounded-2xl bg-slate-50 border border-slate-150 text-xs space-y-1.5">
+              <div key={idx} className="p-4 rounded-2xl bg-slate-50 border border-gray-200 text-xs space-y-1.5">
                 <div className="flex items-start justify-between">
                   <h4 className="font-bold text-slate-900 leading-snug">{cert.name}</h4>
                   <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 shrink-0 ml-2">
